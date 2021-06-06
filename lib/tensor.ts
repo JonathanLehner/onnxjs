@@ -430,13 +430,15 @@ function longToNumber(i: Long, type: onnx.TensorProto.DataType|ortFbs.TensorData
   // INT64, UINT32, UINT64
   if (type === onnx.TensorProto.DataType.INT64 || type === ortFbs.TensorDataType.INT64) {
     if (i.greaterThanOrEqual(2147483648) || i.lessThan(-2147483648)) {
-      throw new TypeError('int64 is not supported');
+      console.log("losing precision");
+      //throw new TypeError('int64 is not supported');
     }
   } else if (
       type === onnx.TensorProto.DataType.UINT32 || type === ortFbs.TensorDataType.UINT32 ||
       type === onnx.TensorProto.DataType.UINT64 || type === ortFbs.TensorDataType.UINT64) {
     if (i.greaterThanOrEqual(4294967296) || i.lessThan(0)) {
-      throw new TypeError('uint64 is not supported');
+      console.log("losing precision");
+      //throw new TypeError('uint64 is not supported');
     }
   } else {
     throw new TypeError(`not a LONG type: ${onnx.TensorProto.DataType[type]}`);
